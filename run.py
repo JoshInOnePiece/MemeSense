@@ -16,7 +16,7 @@ from mediapipe.tasks.python import vision
 
 # Create a GestureRecognizer object.
 # Ensure this path is correct relative to where you run the script locally.
-model_path = os.path.abspath("C:/Users/Daniel Odi/Desktop/UCF/Spring26/DeepLearningProject/dataset_test.task")
+model_path = os.path.relpath("./Models/500_images_train.task")
 
 # Check if the model file exists
 if not os.path.exists(model_path):
@@ -58,13 +58,13 @@ else:
                 display = top_gesture.category_name
                 cv2.putText(frame, gesture_text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 if display == "timeout":
-                    img = cv2.imread('C:/Users/Daniel Odi/Desktop/UCF/Spring26/DeepLearningProject/images/shaqTimeout.jpg')
+                    img = cv2.imread('./images/shaqTimeout.jpg')
                     cv2.imshow('SHAQ', img)
                 elif display == "stop":
-                    img = cv2.imread('C:/Users/Daniel Odi/Desktop/UCF/Spring26/DeepLearningProject/images/JERMAINE.PNG')
+                    img = cv2.imread('./images/JERMAINE.PNG')
                     cv2.imshow('JERMAINE', img)
                 elif display == "fist":
-                    img = cv2.imread('C:/Users/Daniel Odi/Desktop/UCF/Spring26/DeepLearningProject/images/baby.jpeg')
+                    img = cv2.imread('./images/baby.jpeg')
                     cv2.imshow('baby', img)
                     
                 else:
