@@ -36,6 +36,7 @@ else:
         print("Error: Could not open webcam. Please check if it's connected and not in use.")
     else:
         print("Webcam opened successfully. Press 'q' to quit.")
+        active_window = None
         while True:
             ret, frame = cap.read()
             if not ret:
@@ -59,17 +60,33 @@ else:
                 cv2.putText(frame, gesture_text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 if display == "timeout":
                     img = cv2.imread('./images/shaqTimeout.jpg')
-                    cv2.imshow('SHAQ', img)
+                    new_window = 'SHAQ'
                 elif display == "stop":
                     img = cv2.imread('./images/JERMAINE.PNG')
-                    cv2.imshow('JERMAINE', img)
+                    new_window = 'JERMAINE'
                 elif display == "fist":
                     img = cv2.imread('./images/baby.jpeg')
-                    cv2.imshow('baby', img)
-                    
+                    new_window = 'baby'
+                elif display == "holy":
+                    img = cv2.imread('./images/prayin-samil.jpg')
+                    new_window = 'pray'
                 else:
+                    new_window = None
+
+                if new_window:
+                    if active_window and active_window != new_window:
+                        cv2.destroyWindow(active_window)
+                    cv2.imshow(new_window, img)
+                    active_window = new_window
+                else:
+                    if active_window:
+                        cv2.destroyWindow(active_window)
+                        active_window = None
                     cv2.imshow('Gesture Recognition', frame)
             else:
+                if active_window:
+                    cv2.destroyWindow(active_window)
+                    active_window = None
                 cv2.putText(frame, "No gesture detected", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
                 cv2.imshow('Gesture Recognition', frame)
             # Display the frame
