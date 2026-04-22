@@ -149,7 +149,7 @@ else:
 
             cv2.imshow("Gesture Recognition", display_frame)
 
-            # Break the loop when 'q' is pressed
+            # Break the loop when 'q' is pressed    
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
