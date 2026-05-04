@@ -187,9 +187,6 @@ Verify that the gesture label exists in the script’s gesture map and that the 
 - The included models and image mappings are intended for experimentation and demonstration.
 - For best results, keep model names, image names, and gesture labels consistent across training and runtime scripts.
 
-## License
-
-No license file is currently included in the repository. Add a license before distributing or reusing this project publicly.
 
 ## Acknowledgments
 
