@@ -129,22 +129,21 @@ MemeSense can display meme overlays in a Telegram Desktop video call through vir
 
 Setup steps:
 
-1. Install OBS or another supported virtual-camera backend.
-2. Install the optional Python dependency:
+1. Install OBS or another supported virtual-camera backend. Record a sample video as this will install the driver that Telegram can recognize and be used by pyvirtualcam.
+2. Download Telegram Desktop. In Camera setting, select the OBS as your camera input.
+3. Install the optional Python dependency:
 
    ```bash
    python -m pip install pyvirtualcam
    ```
 
-3. Start or enable your system’s virtual camera.
-4. Run the Telegram script:
+4. Run the script. This script must be actively running in order for it to work:
 
    ```bash
    python run_for_telegram.py
    ```
 
-5. In Telegram Desktop, select the virtual camera as your video input.
-6. Start a video call and perform one of the supported gestures.
+5. Start a video call and perform one of the supported gestures.
 
 When a recognized gesture is detected, the matching meme image is overlaid on the outgoing video feed.
 

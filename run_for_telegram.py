@@ -13,10 +13,6 @@ try:
 except ImportError:
     pyvirtualcam = None
 
-# Telegram may mirror virtual-camera input in preview/calls.
-# Pre-mirror here so the final displayed result appears correct.
-TELEGRAM_PREMIRROR = True
-
 
 def overlay_image(background, overlay, x, y, max_width=260, max_height=260):
     if overlay is None:
@@ -51,7 +47,7 @@ def overlay_image(background, overlay, x, y, max_width=260, max_height=260):
 
 # Create a GestureRecognizer object.
 # Ensure this path is correct relative to where you run the script locally.
-model_path = os.path.relpath("./Models/500_images_train.task")
+model_path = os.path.relpath("./Models/baseline_25imgs.task")
 
 # Check if the model file exists
 if not os.path.exists(model_path):
@@ -95,6 +91,8 @@ else:
             "timeout": cv2.imread("./images/shaqTimeout.jpg", cv2.IMREAD_UNCHANGED),
             "stop": cv2.imread("./images/JERMAINE.PNG", cv2.IMREAD_UNCHANGED),
             "fist": cv2.imread("./images/baby.jpeg", cv2.IMREAD_UNCHANGED),
+            "one": cv2.imread("./images/monkeyAha.jpeg", cv2.IMREAD_UNCHANGED),
+            "think": cv2.imread("./images/monkeyThink.jpg", cv2.IMREAD_UNCHANGED),
             "holy": cv2.imread("./images/prayin-samil.jpg", cv2.IMREAD_UNCHANGED),
         }
         persisted_meme = None
@@ -143,8 +141,7 @@ else:
                 persisted_meme = None
 
             if vcam is not None:
-                frame_for_telegram = cv2.flip(display_frame, 1) if TELEGRAM_PREMIRROR else display_frame
-                vcam.send(cv2.cvtColor(frame_for_telegram, cv2.COLOR_BGR2RGB))
+                vcam.send(cv2.cvtColor(display_frame, cv2.COLOR_BGR2RGB))
                 vcam.sleep_until_next_frame()
 
             cv2.imshow("Gesture Recognition", display_frame)
